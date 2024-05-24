@@ -1,6 +1,7 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routers import fibonacci_api_handler
 
 app = FastAPI()
 
@@ -16,4 +17,4 @@ app.add_middleware(
     allow_headers=["*"],  # すべてのヘッダーを許可
 )
 
-#app.include_router()
+app.include_router(fibonacci_api_handler.router)
