@@ -2,7 +2,7 @@ import os
 from typing import Optional
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import fibonacci_api_handler
+from app.routers import fibonacci_api_handler
 
 app = FastAPI()
 

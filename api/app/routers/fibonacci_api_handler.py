@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from libs.math.fibonacci_number.generate_fibonacci_number import generate_fibonacci_number
+from app.libs.math.fibonacci_number.generate_fibonacci_number import generate_fibonacci_number
 from models import FibonacciResultModel,FibonacciValueModel
 
 router = APIRouter()

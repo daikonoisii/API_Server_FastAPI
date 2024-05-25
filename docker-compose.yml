@@ -9,6 +9,6 @@ services:
       - ./api:/api
     ports:
       - "9004:9004"
-    command: uvicorn main:app --reload --host 0.0.0.0 --port 9004
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 9004
     env_file:
       - ./api.env
