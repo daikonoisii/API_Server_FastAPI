@@ -13,9 +13,6 @@ if access_allow_urls:
     # セミコロンで区切られたパスをリストに変換
     origins = access_allow_urls.split(';')
 
-print("******************")
-print(origins)
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,  # 許可するオリジンのリスト
