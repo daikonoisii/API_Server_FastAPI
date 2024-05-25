@@ -1,13 +1,20 @@
 import os
+from typing import Optional
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import fibonacci_api_handler
 
 app = FastAPI()
 
-origins = [
-     os.getenv("ACSESS_ALLOW_URL"),  # フロントのオリジン
-]
+# 環境変数から"アクセスを許可するオリジン"を取得
+access_allow_urls:Optional[str] = os.getenv("ACSESS_ALLOW_URL")
+
+if access_allow_urls:
+    # セミコロンで区切られたパスをリストに変換
+    origins = access_allow_urls.split(';')
+
+print("******************")
+print(origins)
 
 app.add_middleware(
     CORSMiddleware,
