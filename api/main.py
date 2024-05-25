@@ -11,7 +11,9 @@ access_allow_urls:Optional[str] = os.getenv("ACSESS_ALLOW_URL")
 
 if access_allow_urls:
     # セミコロンで区切られたパスをリストに変換
-    origins = access_allow_urls.split(';')
+    origins:list[str] = access_allow_urls.split(';')
+else:
+    origins:list[None] = []
 
 app.add_middleware(
     CORSMiddleware,
