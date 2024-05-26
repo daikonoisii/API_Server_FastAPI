@@ -3,7 +3,13 @@ from app.libs.math.fibonacci_number.validate_fibonacci import fib_index
 
 def test_fib_index():
     """
+    validate_fibonacci.fib_indexのユニットテスト
 
+    fib_index:
+        Args:
+            index (int): フィボナッチ数列のインデックス
+        Returns:
+            (bool): indexが0以上の整数であればTrue、そうでなければFalse
     """
     # 正常なケース
     assert fib_index(1) == True  # 1以上の整数
