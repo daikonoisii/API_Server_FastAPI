@@ -10,7 +10,16 @@ client = TestClient(app)
 def test_fibonacci_api_handler():
     """
     fibonacci_api_handlerのユニットテスト
-    1以上の整数はフィボナッチ数を返すが、0以下の値や小数、文字列を渡すと422エラーが発生する
+
+    fibonacci_api_handler:
+        Args:
+            input_value_model (FibonacciValueModel) : input_value_model.n
+                                                        -> フィボナッチ数列の順番を指定する値.1で先頭のフィボナッチ数を指定する
+        Returns:
+            FibonacciResultModel(result = fibonacci_number) (FibonacciResultModel) : 指定された番目のフィボナッチ数
+        Raises:
+            HTTP_422_UNPROCESSABLE_ENTITY: リクエストの内容が不正
+            HTTP_500_INTERNAL_SERVER_ERROR: nが大きい際、再起的読み込みによって発生するエラー(スタックオーバーフロー等)
     """
     # 正常なケース
 
@@ -72,5 +81,3 @@ def test_fibonacci_api_handler():
     # 極端に大きな数を渡したケース、500エラーを期待
     response = client.get("/fib?n=1000000")
     assert response.status_code == 500
-
-
