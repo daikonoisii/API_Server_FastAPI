@@ -19,7 +19,6 @@ def test_fibonacci_api_handler():
             FibonacciResultModel(result = fibonacci_number) (FibonacciResultModel) : 指定された番目のフィボナッチ数
         Raises:
             HTTP_422_UNPROCESSABLE_ENTITY: リクエストの内容が不正
-            HTTP_500_INTERNAL_SERVER_ERROR: nが大きい際、再起的読み込みによって発生するエラー(スタックオーバーフロー等)
     """
     # 正常なケース
 
@@ -38,11 +37,16 @@ def test_fibonacci_api_handler():
     assert response.status_code == 200
     assert response.json() == {"result": 55}
 
-    # 非常に大きな値のテスト
+    # 大きな値のテスト
     # 注意: このテストは実行時間が長くなる可能性があるため、実際の環境に応じて実施
-    # response = client.get("/fib?n=99")
-    # assert response.status_code == 200
-    # assert response.json() == {"result": 218922995834555169026}
+    response = client.get("/fib?n=99")
+    assert response.status_code == 200
+    assert response.json() == {"result": 218922995834555169026}
+    
+    response = client.get("/fib?n=500")
+    assert response.status_code == 200
+    assert response.json() == {"result":139423224561697880139724382870407283950070256587697307264108962948325571622863290691557658876222521294125}
+
 
     # 異常なケース
 
@@ -77,7 +81,3 @@ def test_fibonacci_api_handler():
     # 非常に大きな文字列を渡したケース、422エラーを期待
     response = client.get("/fib?n="+"very_long_string" * 4000)
     assert response.status_code == 422
-
-    # 極端に大きな数を渡したケース、500エラーを期待
-    response = client.get("/fib?n=1000000")
-    assert response.status_code == 500
