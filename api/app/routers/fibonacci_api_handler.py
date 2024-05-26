@@ -23,7 +23,10 @@ def fibonacci_api_handler(input_value_model: FibonacciValueModel = Depends()) ->
     try:
         fibonacci_number:int = generate_fibonacci_number(input_value_model.n)
     except ValueError as e:
+        # input_value_model.nが1以上の整数ではない
         raise HTTPException(status_code=422, detail=str(e))
-
+    except RecursionError as e:
+        # スタックオーバーフロー
+        raise HTTPException(status_code=500, detail=str(e))
 
     return FibonacciResultModel(result = fibonacci_number)
