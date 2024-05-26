@@ -25,13 +25,9 @@ def test_generate_fibonacci_number():
     assert generate_fibonacci_number(6) == 8  # 6番目のフィボナッチ数は8
     assert generate_fibonacci_number(10) == 55  # 10番目のフィボナッチ数は55
 
-
-    # 大きな値に対するテスト
-    # assert generate_fibonacci_number(50) == 12586269025  # 50番目のフィボナッチ数は12586269025
-
     # 非常に大きな値のテスト
     # 注意: このテストは実行時間が長くなる可能性があるため、実際の環境に応じて実施
-    # assert generate_fibonacci_number(99) == 218922995834555169026  # 99番目は218922995834555169026
+    assert generate_fibonacci_number(99) == 218922995834555169026  # 99番目は218922995834555169026
 
     # エッジケース
     assert generate_fibonacci_number(0) == 0  # 0番目は0を返すべき
@@ -61,9 +57,6 @@ def test_generate_fibonacci_number():
         
     with pytest.raises(ValueError):   # オブジェクト型
         generate_fibonacci_number(object())
-    
-    with pytest.raises(RecursionError): # 極端に大きな値
-        generate_fibonacci_number(1000000)
 
     with pytest.raises(ValueError):   # 非常に大きな文字列
         generate_fibonacci_number("very long string" * 100000)

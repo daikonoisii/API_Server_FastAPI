@@ -16,7 +16,6 @@ def fibonacci_api_handler(input_value_model: FibonacciValueModel = Depends()) ->
         FibonacciResultModel(result = fibonacci_number) (FibonacciResultModel) : 指定された番目のフィボナッチ数
     Raises:
         HTTP_422_UNPROCESSABLE_ENTITY: リクエストの内容が不正 or フィボナッチ数を生成する関数が値を処理できなかった
-        HTTP_500_INTERNAL_SERVER_ERROR: nが大きい際、再起的読み込みによって発生するエラー(スタックオーバーフロー等)
     """
 
     # n番目のフィボナッチ数を取得
@@ -25,8 +24,5 @@ def fibonacci_api_handler(input_value_model: FibonacciValueModel = Depends()) ->
     except ValueError as e:
         # input_value_model.nが1以上の整数ではない
         raise HTTPException(status_code=422, detail=str(e))
-    except RecursionError as e:
-        # スタックオーバーフロー
-        raise HTTPException(status_code=500, detail=str(e))
 
     return FibonacciResultModel(result = fibonacci_number)
