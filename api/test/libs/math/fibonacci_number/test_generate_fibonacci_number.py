@@ -18,5 +18,11 @@ def test_generate_fibonacci_number():
     # エッジケース
     assert generate_fibonacci_number(0) == 0  # 0番目は0を返すべき
 
-    # 負の数に対するテスト
-    assert generate_fibonacci_number(-1) == 0  # 負の数に対しては0を返すべき
+    # 異常なケース
+    with pytest.raises(ValueError):  # 負の値に対してはValueErrorが発生
+        generate_fibonacci_number(-1)
+    with pytest.raises(ValueError):  # 文字列に対してはValueErrorが発生
+        generate_fibonacci_number("a")
+    with pytest.raises(ValueError):  #配列に対してはValueErrorが発生
+        generate_fibonacci_number([1,2,3,4])
+        

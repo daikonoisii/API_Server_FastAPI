@@ -1,3 +1,5 @@
+from app.libs.math.fibonacci_number import validate_fibonacci
+
 def generate_fibonacci_number(fibonacci_index:int):
     """
     指定された順番のフィボナッチ数を生成する関数
@@ -8,8 +10,12 @@ def generate_fibonacci_number(fibonacci_index:int):
     Returns:
         generate_fibonacci_number(fibonacci_index -1) + generate_fibonacci_number(fibonacci_index -2) (int) : 指定された番目のフィボナッチ数
     Raises:
-        HTTP_400_BAD_REQUEST:
+        ValueError: フィボナッチ数のインデックスが有効範囲外 or インデックスが数値ではない
     """
+
+    # フィボナッチ数の番数が不正な値でなはないか検証
+    if not validate_fibonacci.fib_index(fibonacci_index):
+        raise ValueError("Invalid index for Fibonacci number")
 
     # フィボナッチ数を計算
     # n番目のフィボナッチ数はn-1番目とn-2番目を足したものであり、1番目のフィボナッチ数は1,0番目以下は0とすることで値が収束する
