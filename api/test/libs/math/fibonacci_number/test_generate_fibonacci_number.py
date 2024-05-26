@@ -5,8 +5,17 @@ from app.libs.math.fibonacci_number.generate_fibonacci_number import generate_fi
 def test_generate_fibonacci_number():
     """
     generate_fibonacci_numberのユニットテスト.
-    1以上の整数に対してはその番目のフィボナッチ数が返ってくる.0以下に対しては0が返ってくる.
+    
+    generate_fibonacci_number:
+        Args:
+            fibonacci_index (int) : フィボナッチ数列の順番を指定する値.1で先頭のフィボナッチ数を指定する.
+        Returns:
+            (int) : 指定された番目のフィボナッチ数.fibonacci_index = 0 の返り値は0.
+        Raises:
+            ValueError: フィボナッチ数のインデックスが有効範囲外 or インデックスが数値ではない
+            RecursionError: スタックオーバーフロー
     """
+
     # 正常なケース
     assert generate_fibonacci_number(1) == 1  # 1番目のフィボナッチ数は1
     assert generate_fibonacci_number(2) == 1  # 2番目のフィボナッチ数は1
