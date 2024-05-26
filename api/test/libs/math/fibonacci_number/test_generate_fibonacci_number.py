@@ -13,7 +13,6 @@ def test_generate_fibonacci_number():
             (int) : 指定された番目のフィボナッチ数.fibonacci_index = 0 の返り値は0.
         Raises:
             ValueError: フィボナッチ数のインデックスが有効範囲外 or インデックスが数値ではない
-            RecursionError: スタックオーバーフロー
     """
 
     # 正常なケース
