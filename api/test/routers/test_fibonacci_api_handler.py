@@ -69,4 +69,8 @@ def test_fibonacci_api_handler():
     response = client.get("/fib?n="+"very_long_string" * 4000)
     assert response.status_code == 422
 
+    # 極端に大きな数を渡したケース、500エラーを期待
+    response = client.get("/fib?n=1000000")
+    assert response.status_code == 500
+
 
