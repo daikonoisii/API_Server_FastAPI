@@ -36,9 +36,7 @@ URL：https://api.dishizawa.net/fib?n=120
 
 return:
 ```
-{
-  "result": 5.358359254990966e+24
-}
+{"result":5358359254990966640871840}
 ```
 Script: `curl -X GET -H "Content-Type: application/json" "https://api.dishizawa.net/fib?n=120"`
 
