@@ -1,11 +1,15 @@
-import logging
+import os
 import json
+import logging
 from fastapi import Request ,HTTPException
 from fastapi.responses import JSONResponse
 from starlette.responses import JSONResponse, StreamingResponse
 
+# 環境変数からlogファイルの名称を取得
+log_file_name = os.getenv('LOG_FILE_NAME', ".log")
+
 # ロギングの設定
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',filename='app.log',filemode='a')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',filename=log_file_name,filemode='a')
 
 async def log_http_requests(request: Request, call_next):
     """
