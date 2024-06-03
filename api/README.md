@@ -61,10 +61,12 @@ return:
 ├── app
 │   ├── __init__.py
 │   ├── libs
-│   │   └── math
-│   │       └── fibonacci_number
-│   │           ├── generate_fibonacci_number.py
-│   │           └── validate_fibonacci.py
+│   │   ├── math
+│   │   │   └── fibonacci_number
+│   │   │       ├── generate_fibonacci_number.py
+│   │   │       └── validate_fibonacci.py
+│   │   └── utils
+│   │       └── logger.py
 │   ├── main.py
 │   └── routers
 │       └── fibonacci_api_handler.py
@@ -101,6 +103,10 @@ return:
           　フィボナッチ数を生成する関数を含むファイル
           - ``validate_fibonacci.py``  
           　フィボナッチ数のバリデーションを行う関数を含むファイル
+      - ``utils``:  
+        　汎用関数を記述
+        - ``logger.py``:  
+          　logger関数を含むファイル
     - ``main.py`` :   
     　アプリケーションのエントリーポイント  
     　FastAPIのインスタンスを作成  
