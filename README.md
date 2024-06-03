@@ -58,10 +58,10 @@ URL：https://api.dishizawa.net/fib?n=120
 return:
 ```
 {
-  "result": 5.358359254990966e+24
+  "result": 5358359254990966640871840
 }
 ```
-Script: `curl -X GET -H "Content-Type: application/json" "https://api.dishizawa.net/fib?n=120"`
+Script: `curl -X GET -H "Content-Type: application/json" "https://{your domain}/fib?n=120"`
 
 return:
 ```
@@ -133,3 +133,6 @@ return:
 
 - `docker-compose.prod.yml`
   - 複数のコンテナを定義し、実行するための設定.本番用
+
+- `.gitignore`
+  - gitの追跡から除外するファイル一覧
