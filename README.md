@@ -80,10 +80,12 @@ return:
 │   ├── app
 │   │   ├── __init__.py
 │   │   ├── libs
-│   │   │   └── math
-│   │   │       └── fibonacci_number
-│   │   │           ├── generate_fibonacci_number.py
-│   │   │           └── validate_fibonacci.py
+│   │   │   ├── math
+│   │   │   │   └── fibonacci_number
+│   │   │   │       ├── generate_fibonacci_number.py
+│   │   │   │       └── validate_fibonacci.py
+│   │   │   └── utils
+│   │   │       └── logger.py
 │   │   ├── main.py
 │   │   └── routers
 │   │       └── fibonacci_api_handler.py
