@@ -4,8 +4,5 @@ if [ ! -f api.env ]; then
     echo 'LOG_FILE_NAME="api.log"' >> api.env
 fi
 
-docker compose build
-docker compose up
-
-#docker-compose -f docker-compose.prod.yml build
-#docker compose -f docker-compose.prod.yml up -d
+docker-compose -f docker-compose.prod.yml build
+docker compose -f docker-compose.prod.yml up -d
