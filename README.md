@@ -20,6 +20,10 @@ URL：https://api.dishizawa.net/fib
 必要なソフトウェアやライブラリのインストール方法
 
 ```bash
+touch api.env
+
+echo "LOG_FILE_NAME={your log file name}" >> api.env
+
 docker compose -f docker-compose.prod.yml build
 
 docker compose -f docker-compose.prod.yml up -d
