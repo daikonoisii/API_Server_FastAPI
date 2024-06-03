@@ -14,6 +14,8 @@ URL：https://api.dishizawa.net/fib
 クエリ：
 - n (int): フィボナッチ数の番目を指定する値
 
+EX:
+- https://api.dishizawa.net/fib?n=120
 
 ## Installation
 
