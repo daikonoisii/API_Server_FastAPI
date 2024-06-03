@@ -3,8 +3,12 @@ from typing import Optional
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import fibonacci_api_handler
+from app.libs.utils import logger
 
 app = FastAPI()
+
+# ロガーをミドルウェアとしてアプリに追加
+app.middleware("http")(logger.log_http_requests)
 
 # 環境変数から"アクセスを許可するオリジン"を取得
 access_allow_urls:Optional[str] = os.getenv("ACSESS_ALLOW_URL")
