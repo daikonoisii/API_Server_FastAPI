@@ -5,7 +5,7 @@ from models import FibonacciResultModel,FibonacciValueModel
 router = APIRouter()
 
 @router.get("/fib", response_model=FibonacciResultModel)
-def fibonacci_api_handler(input_value_model: FibonacciValueModel = Depends()) -> dict[str,int]:
+async def fibonacci_api_handler(input_value_model: FibonacciValueModel = Depends()) -> dict[str,int]:
     """
     指定された順番のフィボナッチ数を生成するルーター
     ex. n=1 -> 1, n=6 -> 8, n=7 -> 13 n=8 -> 21
