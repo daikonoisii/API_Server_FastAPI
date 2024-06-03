@@ -28,7 +28,7 @@ async def log_http_requests(request: Request, call_next):
         # 次のリクエストハンドラを非同期で呼び出し、レスポンスを待機
         response = await call_next(request)
         
-        if response.status_code == 422:
+        if response.status_code != 200:
             content = []
             async for chunk in response.body_iterator:
                 content.append(chunk)
