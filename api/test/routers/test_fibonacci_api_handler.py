@@ -1,13 +1,42 @@
+import os
+import pytest
+import asyncio
+from app.main import app
+from httpx import AsyncClient
 from fastapi.testclient import TestClient
-from fastapi import FastAPI
 from app.routers.fibonacci_api_handler import router as fibonacci_router
 
-app = FastAPI()
 app.include_router(fibonacci_router)
 
 client = TestClient(app)
 
-def test_fibonacci_api_handler():
+
+# 環境変数からlogファイルの名称を取得
+API_SERVER_NAME:str = os.getenv('API_SERVER_NAME', "http://localhost:9004/")
+
+@pytest.mark.asyncio
+async def test_fibonacci_api_handler_concurrent_stress():
+    """
+    fibonacci_api_handlerの負荷テスト(並行処理)
+
+    fibonacci_api_handler:
+        Args:
+            input_value_model (FibonacciValueModel) : input_value_model.n
+                                                        -> フィボナッチ数列の順番を指定する値.1で先頭のフィボナッチ数を指定する
+        Returns:
+            FibonacciResultModel(result = fibonacci_number) (FibonacciResultModel) : 指定された番目のフィボナッチ数
+        Raises:
+            HTTP_422_UNPROCESSABLE_ENTITY: リクエストの内容が不正
+    """
+    # 非同期に100回りクエストを送信
+    async with AsyncClient(base_url=API_SERVER_NAME) as ac:
+        # 同時に100回リクエスト
+        tasks:list = [ac.get("/fib?n=100") for _ in range(100)]
+        responses = await asyncio.gather(*tasks)
+        assert all(response.status_code == 200 for response in responses)
+
+
+def test_fibonacci_api_handler_value():
     """
     fibonacci_api_handlerのユニットテスト
 
